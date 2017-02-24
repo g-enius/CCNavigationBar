@@ -7,6 +7,10 @@
 //
 
 #import "CCViewController.h"
+#import "UIViewController+navigationBar.h"
+#define randomFloat arc4random() % 255 / 255.
+
+static NSString * titleString = @"Tap To Push";
 
 @interface CCViewController ()
 
@@ -17,13 +21,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.title = titleString;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pushNewVC:)];
+    [self.view addGestureRecognizer:tap];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)pushNewVC:(UITapGestureRecognizer *)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    UIViewController *newViewController = [UIViewController new];
+    newViewController.title = titleString;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pushNewVC:)];
+    [newViewController.view addGestureRecognizer:tap];
+    
+    UIColor *randomColor = [UIColor colorWithRed:randomFloat green:randomFloat blue:randomFloat alpha:1];
+    newViewController.view.backgroundColor = [UIColor whiteColor];
+    newViewController.navigationBarColor = randomColor;
+    [self.navigationController pushViewController:newViewController animated:YES];
 }
+
 
 @end

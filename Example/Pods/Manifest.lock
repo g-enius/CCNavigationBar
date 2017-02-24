@@ -1,0 +1,16 @@
+PODS:
+  - CCNavigationBar (0.1.0)
+
+DEPENDENCIES:
+  - CCNavigationBar (from `../`)
+
+EXTERNAL SOURCES:
+  CCNavigationBar:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CCNavigationBar: 43868ad51e0504ee73d4cf5b9b2469ec82075860
+
+PODFILE CHECKSUM: 9703975c4e71e6a7e942cdbde05f7d9089355be7
+
+COCOAPODS: 1.1.1

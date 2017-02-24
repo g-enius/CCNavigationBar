@@ -9,22 +9,18 @@
 Pod::Spec.new do |s|
   s.name             = 'CCNavigationBar'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of CCNavigationBar.'
+  s.summary          = 'A color Changeable NavigationBar'
+  s.description      = 'A simple and loose coupling solution for the bizarre effect of system navigationBar when poping by draging gesture from the lefe edge.
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
+Each viewController will has its own navigationBar as its subView and the navigationBar of navigationControllers are set translucent.
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+By this way, there would be a clear seperation when poping by gesture and without dealing with the mass of back button and titleText as there are still jobs of system. Besides, you can also change its color whenever you want by simply chaning navigationBarColor'
+
 
   s.homepage         = 'https://github.com/g-enius/CCNavigationBar'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'g-enius' => 'wang_chao@corp.netease.com' }
+  s.author           = { 'g-enius' => 'chaowangbuaa@gmail.com' }
   s.source           = { :git => 'https://github.com/g-enius/CCNavigationBar.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 

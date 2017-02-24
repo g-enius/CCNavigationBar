@@ -1,0 +1,6 @@
+framework module CCNavigationBar {
+  umbrella header "CCNavigationBar-umbrella.h"
+
+  export *
+  module * { export * }
+}

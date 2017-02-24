@@ -19,10 +19,17 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "CCNavigationBar"
 ```
+A simple and loose coupling solution for the bizarre effect of system navigationBar when poping by draging gesture from the lefe edge.
+
+Each viewController will has its own navigationBar as its subView and the navigationBar of navigationControllers are set translucent.
+
+By this way, there would be a clear seperation when poping by gesture and without dealing with the mass of back button and titleText as there are still jobs of system. Besides, you can also change its color whenever you want by simply chaning navigationBarColor
+
+![alt tag](https://github.com/g-enius/CCNavigationBar/blob/master/demo.gif)
 
 ## Author
 
-g-enius, wang_chao@corp.netease.com
+g-enius, chaowangbuaa@gmail.com
 
 ## License
 

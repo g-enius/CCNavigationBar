@@ -1,0 +1,6 @@
+framework module Pods_CCNavigationBar_Example {
+  umbrella header "Pods-CCNavigationBar_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
