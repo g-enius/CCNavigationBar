@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'CCNavigationBar_Example' do
+  pod 'CCNavigationBar', :path => '../'
+
+  target 'CCNavigationBar_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
