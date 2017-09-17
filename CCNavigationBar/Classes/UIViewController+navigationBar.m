@@ -36,7 +36,7 @@ static CGFloat const navigationBarHeight = 64.0;
     [self updateNavigationBarColor];
 }
 
-- (void)addFackeNavigationBar
+- (void)addFakeNavigationBar
 {
     //Note: if self.edgesForExtendedLayout is UIRectEdgeNone, need to change the frame to (0, -64, SCREEN_WIDTH, navigationBarHeight)
     self.navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, navigationBarHeight)];

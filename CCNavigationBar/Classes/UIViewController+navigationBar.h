@@ -14,7 +14,7 @@
 - (void)setNavigationBar: (UINavigationBar *)naviBar;
 - (UIColor *)navigationBarColor;
 - (void)setNavigationBarColor:(UIColor *)navigationBarColor;
-- (void)addFackeNavigationBar;
+- (void)addFakeNavigationBar;
 - (void)updateNavigationBarColor;
 
 @end
