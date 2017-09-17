@@ -47,14 +47,14 @@
     UIViewController *topViewController = viewControllers.lastObject;
     
     if (!topViewController.navigationBar) {
-        [topViewController addFackeNavigationBar];
+        [topViewController addFakeNavigationBar];
     }
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if(!viewController.navigationBar) {
-        [viewController addFackeNavigationBar];
+        [viewController addFakeNavigationBar];
     }
 }
 
