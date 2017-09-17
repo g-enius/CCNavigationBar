@@ -25,6 +25,7 @@ Each viewController will has its own navigationBar as its subView and the naviga
 
 By this way, there would be a clear seperation when poping by gesture and without dealing with the mass of back button and titleText as there are still jobs of system. Besides, you can also change its color whenever you want by simply chaning navigationBarColor
 
+![alt tag](https://github.com/g-enius/CCNavigationBar/blob/master/CCNavigationBar_hideBarDemo.gif)
 ![alt tag](https://github.com/g-enius/CCNavigationBar/blob/master/demo.gif)
 
 ## Author
