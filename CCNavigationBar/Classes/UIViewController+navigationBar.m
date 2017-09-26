@@ -13,6 +13,8 @@
 
 static CGFloat const navigationBarHeight = 64.0;
 
+static NSInteger const backgroundViewForiOS11Tag = 11;
+
 @implementation UIViewController (navigationBar)
 
 - (UINavigationBar *)navigationBar
@@ -43,6 +45,13 @@ static CGFloat const navigationBarHeight = 64.0;
     self.navigationBar.translucent = NO;
     self.navigationBar.barStyle = UINavigationBar.appearance.barStyle;
     self.navigationBar.shadowImage = [UIImage new];
+    
+    if (@available(iOS 11.0, *)) {
+        UIView *backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.navigationBar.frame), CGRectGetHeight(self.navigationBar.frame))];
+        backgroundView.tag = backgroundViewForiOS11Tag;
+        [self.navigationBar addSubview:backgroundView];
+    }
+    
     [self updateNavigationBarColor];
     
     //self.view.clipsToBounds = NO; //need only if self.edgesForExtendedLayout is UIRectEdgeNone
@@ -55,9 +64,17 @@ static CGFloat const navigationBarHeight = 64.0;
     if (self.navigationBarColor) {
         self.navigationBar.barTintColor = self.navigationBarColor;
         [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        if(@available(iOS 11.0, *)) {
+            UIView *backgroundView = [self.navigationBar viewWithTag:backgroundViewForiOS11Tag];
+            backgroundView.backgroundColor = self.navigationBarColor;
+        }
     } else {
         self.navigationBar.barTintColor = UINavigationBar.appearance.barTintColor;
         [self.navigationBar setBackgroundImage:[UINavigationBar.appearance backgroundImageForBarMetrics:UIBarMetricsDefault] forBarMetrics:UIBarMetricsDefault];
+        if(@available(iOS 11.0, *)) {
+            UIView *backgroundView = [self.navigationBar viewWithTag:backgroundViewForiOS11Tag];
+            backgroundView.backgroundColor = UINavigationBar.appearance.barTintColor;
+        }
     }
 }
 
