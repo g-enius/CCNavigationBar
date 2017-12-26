@@ -10,8 +10,9 @@
 #import <objc/runtime.h>
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
-static CGFloat const navigationBarHeight = 64.0;
+#define navigationBarHeight (SCREEN_WIDTH == 375.f && SCREEN_HEIGHT == 812.f ? 88.0 : 64.0)
 
 static NSInteger const backgroundViewForiOS11Tag = 11;
 
@@ -79,3 +80,4 @@ static NSInteger const backgroundViewForiOS11Tag = 11;
 }
 
 @end
+
