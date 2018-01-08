@@ -10,8 +10,8 @@
 
 @interface UIViewController (navigationBar)
 
-- (UINavigationBar *)navigationBar;
-- (void)setNavigationBar: (UINavigationBar *)naviBar;
+- (UIView *)navigationBar;
+- (void)setNavigationBar: (UIView *)naviBar;
 - (UIColor *)navigationBarColor;
 - (void)setNavigationBarColor:(UIColor *)navigationBarColor;
 - (void)addFakeNavigationBar;

@@ -9,21 +9,14 @@
 #import "UIViewController+navigationBar.h"
 #import <objc/runtime.h>
 
-#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-
-#define navigationBarHeight (SCREEN_WIDTH == 375.f && SCREEN_HEIGHT == 812.f ? 88.0 : 64.0)
-
-static NSInteger const backgroundViewForiOS11Tag = 11;
-
 @implementation UIViewController (navigationBar)
 
-- (UINavigationBar *)navigationBar
+- (UIView *)navigationBar
 {
     return objc_getAssociatedObject(self, @selector(navigationBar));
 }
 
-- (void)setNavigationBar: (UINavigationBar *)naviBar
+- (void)setNavigationBar: (UIView *)naviBar
 {
     objc_setAssociatedObject(self, @selector(navigationBar), naviBar, OBJC_ASSOCIATION_RETAIN);
 }
@@ -39,44 +32,56 @@ static NSInteger const backgroundViewForiOS11Tag = 11;
     [self updateNavigationBarColor];
 }
 
+- (void)updateNavigationBarFrame {
+    CGFloat height;
+    if ([self isLandscape]) {
+        if ([self isIphoneX]) {
+            height = 32; //iPhoneX Landscape couldn't show status bar!
+        } else {
+            height = self.prefersStatusBarHidden ? 44 : 64;
+        }
+    } else {
+        height = [self isIphoneX] ? 88.0 : 64.0;
+    }
+    
+    self.navigationBar.frame = CGRectMake(0, -height, SCREEN_WIDTH, height);
+}
+
 - (void)addFakeNavigationBar
 {
     //Note: if self.edgesForExtendedLayout is UIRectEdgeAll, need to change the frame to (0, 0, SCREEN_WIDTH, navigationBarHeight)
-    self.navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, -navigationBarHeight, SCREEN_WIDTH, navigationBarHeight)];
-    self.navigationBar.translucent = NO;
-    self.navigationBar.barStyle = UINavigationBar.appearance.barStyle;
-    self.navigationBar.shadowImage = [UIImage new];
-    
-    if (@available(iOS 11.0, *)) {
-        UIView *backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.navigationBar.frame), CGRectGetHeight(self.navigationBar.frame))];
-        backgroundView.tag = backgroundViewForiOS11Tag;
-        [self.navigationBar addSubview:backgroundView];
-    }
-    
+
+    self.navigationBar = [UIView new];
+    [self.view addSubview:self.navigationBar];
+
+    [self updateNavigationBarFrame];
     [self updateNavigationBarColor];
     
-    //self.view.clipsToBounds = NO; //need only if self.edgesForExtendedLayout is UIRectEdgeNone
-    
-    [self.view addSubview:self.navigationBar];
+    //If your app targets iOS 9.0 and later or macOS 10.11 and later, you don't need to unregister an observer in its dealloc method.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNavigationBarFrame) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 - (void)updateNavigationBarColor
 {
     if (self.navigationBarColor) {
-        self.navigationBar.barTintColor = self.navigationBarColor;
-        [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-        if(@available(iOS 11.0, *)) {
-            UIView *backgroundView = [self.navigationBar viewWithTag:backgroundViewForiOS11Tag];
-            backgroundView.backgroundColor = self.navigationBarColor;
-        }
+        self.navigationBar.backgroundColor = self.navigationBarColor;
     } else {
-        self.navigationBar.barTintColor = UINavigationBar.appearance.barTintColor;
-        [self.navigationBar setBackgroundImage:[UINavigationBar.appearance backgroundImageForBarMetrics:UIBarMetricsDefault] forBarMetrics:UIBarMetricsDefault];
-        if(@available(iOS 11.0, *)) {
-            UIView *backgroundView = [self.navigationBar viewWithTag:backgroundViewForiOS11Tag];
-            backgroundView.backgroundColor = UINavigationBar.appearance.barTintColor;
-        }
+        self.navigationBar.backgroundColor = UINavigationBar.appearance.barTintColor;
     }
+}
+
+- (BOOL)isIphoneX
+{
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    CGFloat width = MIN(screenSize.width, screenSize.height);
+    CGFloat height = MAX(screenSize.width, screenSize.height);
+    
+    return (width == 375.0 && height == 812.0);
+}
+
+- (BOOL)isLandscape
+{
+    return UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation);
 }
 
 @end

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CCNavigationBar'
-  s.version          = '0.3.1'
+  s.version          = '0.4.0'
   s.summary          = 'A color Changeable NavigationBar'
   s.description      = 'A simple and loose coupling solution for the bizarre effect of system navigationBar when poping by draging gesture from the lefe edge.
 
@@ -20,7 +20,7 @@ By this way, there would be a clear seperation when poping by gesture and withou
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'g-enius' => 'chaowangbuaa@gmail.com' }
   s.source           = { :git => 'https://github.com/g-enius/CCNavigationBar.git', :tag => s.version.to_s }
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
   s.source_files = 'CCNavigationBar/Classes/**/*'
 
 end

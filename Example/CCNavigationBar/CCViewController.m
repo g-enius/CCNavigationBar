@@ -21,6 +21,9 @@ static NSString * titleString = @"Tap To Push";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //Note: it's critical to get right navigation bar
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.navigationBarColor = [UIColor lightGrayColor];
     self.title = titleString;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pushNewVC:)];
     [self.view addGestureRecognizer:tap];
@@ -29,6 +32,7 @@ static NSString * titleString = @"Tap To Push";
 - (void)pushNewVC:(UITapGestureRecognizer *)sender
 {
     UIViewController *newViewController = [UIViewController new];
+    newViewController.edgesForExtendedLayout = UIRectEdgeNone;
     newViewController.title = titleString;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pushNewVC:)];
     [newViewController.view addGestureRecognizer:tap];
@@ -39,5 +43,8 @@ static NSString * titleString = @"Tap To Push";
     [self.navigationController pushViewController:newViewController animated:YES];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
 
 @end
