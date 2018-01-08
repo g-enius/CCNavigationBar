@@ -38,9 +38,9 @@
     CGFloat height;
     if ([self isLandscape]) {
         if ([self isIphoneX]) {
-            height = 32; //iPhoneX Landscape couldn't show status bar!
+            height = 32; //iPhoneX couldn't control status bar!
         } else {
-            height = self.prefersStatusBarHidden ? 44 : 64;
+            height = [self isStatusBarHidden] ? 44 : 64;
         }
     } else {
         height = [self isIphoneX] ? 88.0 : 64.0;
@@ -84,6 +84,10 @@
 - (BOOL)isLandscape
 {
     return UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation);
+}
+
+- (BOOL)isStatusBarHidden {
+    return [UIApplication sharedApplication].statusBarHidden;
 }
 
 @end

@@ -44,7 +44,7 @@ static NSString * titleString = @"Tap To Push";
 }
 
 - (BOOL)prefersStatusBarHidden {
-    return YES;
+    return YES; //iPhoneX couldn't control status bar!
 }
 
 @end
