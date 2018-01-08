@@ -9,6 +9,8 @@
 #import "UIViewController+navigationBar.h"
 #import <objc/runtime.h>
 
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+
 @implementation UIViewController (navigationBar)
 
 - (UIView *)navigationBar
