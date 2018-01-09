@@ -20,10 +20,10 @@
     // Do any additional setup after loading the view.
     self.navigationBar.translucent = YES;
     [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.delegate = (id<UINavigationControllerDelegate>) self;
-    
+    self.navigationBar.shadowImage = [UIImage new];//otherwise will be a gray underline
     self.navigationBar.titleTextAttributes = UINavigationBar.appearance.titleTextAttributes;
 
+    self.delegate = (id<UINavigationControllerDelegate>) self;
 }
 
 - (void)didReceiveMemoryWarning {
