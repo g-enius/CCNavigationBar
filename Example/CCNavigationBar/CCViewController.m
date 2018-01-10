@@ -47,4 +47,8 @@ static NSString * titleString = @"Tap To Push";
     return YES; //iPhoneX couldn't control status bar!
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 @end

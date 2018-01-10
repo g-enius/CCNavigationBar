@@ -58,4 +58,9 @@
     }
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return self.topViewController.supportedInterfaceOrientations;
+}
+
 @end

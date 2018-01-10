@@ -83,7 +83,7 @@
 
 - (BOOL)isLandscape
 {
-    return UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation);
+    return UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation);
 }
 
 - (BOOL)isStatusBarHidden {
