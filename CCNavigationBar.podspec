@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CCNavigationBar'
-  s.version          = '0.4.3'
+  s.version          = '0.4.4'
   s.summary          = 'A color Changeable NavigationBar'
   s.description      = 'A simple and loose coupling solution for the bizarre effect of system navigationBar when poping by draging gesture from the lefe edge.
 

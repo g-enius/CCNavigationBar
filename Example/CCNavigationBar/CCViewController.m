@@ -23,7 +23,7 @@ static NSString * titleString = @"Tap To Push";
     [super viewDidLoad];
     //Note: it's critical to get right navigation bar
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.navigationBarColor = [UIColor lightGrayColor];
+    self.navigationBarViewColor = [UIColor lightGrayColor];
     self.title = titleString;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pushNewVC:)];
     [self.view addGestureRecognizer:tap];
@@ -39,7 +39,7 @@ static NSString * titleString = @"Tap To Push";
     
     UIColor *randomColor = [UIColor colorWithRed:randomFloat green:randomFloat blue:randomFloat alpha:1];
     newViewController.view.backgroundColor = [UIColor whiteColor];
-    newViewController.navigationBarColor = randomColor;
+    newViewController.navigationBarViewColor = randomColor;
     [self.navigationController pushViewController:newViewController animated:YES];
 }
 

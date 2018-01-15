@@ -13,28 +13,28 @@
 
 @implementation UIViewController (navigationBar)
 
-- (UIView *)navigationBar
+- (UIView *)navigationBarView
 {
-    return objc_getAssociatedObject(self, @selector(navigationBar));
+    return objc_getAssociatedObject(self, @selector(navigationBarView));
 }
 
-- (void)setNavigationBar: (UIView *)naviBar
+- (void)setNavigationBarView: (UIView *)naviBarView
 {
-    objc_setAssociatedObject(self, @selector(navigationBar), naviBar, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, @selector(navigationBarView), naviBarView, OBJC_ASSOCIATION_RETAIN);
 }
 
-- (UIColor *)navigationBarColor
+- (UIColor *)navigationBarViewColor
 {
-    return objc_getAssociatedObject(self, @selector(navigationBarColor));
+    return objc_getAssociatedObject(self, @selector(navigationBarViewColor));
 }
 
-- (void)setNavigationBarColor:(UIColor *)navigationBarColor
+- (void)setNavigationBarViewColor:(UIColor *)navigationBarViewColor
 {
-    objc_setAssociatedObject(self, @selector(navigationBarColor), navigationBarColor, OBJC_ASSOCIATION_RETAIN);
-    [self updateNavigationBarColor];
+    objc_setAssociatedObject(self, @selector(navigationBarViewColor), navigationBarViewColor, OBJC_ASSOCIATION_RETAIN);
+    [self updateNavigationBarViewColor];
 }
 
-- (void)updateNavigationBarFrame {
+- (void)updateNavigationBarViewFrame {
     CGFloat height;
     if ([self isLandscape]) {
         if ([self isIphoneX]) {
@@ -46,29 +46,31 @@
         height = [self isIphoneX] ? 88.0 : 64.0;
     }
     
-    self.navigationBar.frame = CGRectMake(0, -height, SCREEN_WIDTH, height);
+    self.navigationBarView.frame = CGRectMake(0, -height, SCREEN_WIDTH, height);
+    
+//    NSLog(@"%@ updateNavigationBarFrame: %@, %@", self, self.navigationBarView, NSStringFromCGRect(self.navigationBarView.frame));
 }
 
-- (void)addFakeNavigationBar
+- (void)addFakeNavigationBarView
 {
     //Note: if self.edgesForExtendedLayout is UIRectEdgeAll, need to change the frame to (0, 0, SCREEN_WIDTH, navigationBarHeight)
-
-    self.navigationBar = [UIView new];
-    [self.view addSubview:self.navigationBar];
-
-    [self updateNavigationBarFrame];
-    [self updateNavigationBarColor];
+    
+    self.navigationBarView = [UIView new];
+    [self.view addSubview:self.navigationBarView];
+    
+    [self updateNavigationBarViewFrame];
+    [self updateNavigationBarViewColor];
     
     //If your app targets iOS 9.0 and later or macOS 10.11 and later, you don't need to unregister an observer in its dealloc method.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNavigationBarFrame) name:UIDeviceOrientationDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNavigationBarViewFrame) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
-- (void)updateNavigationBarColor
+- (void)updateNavigationBarViewColor
 {
-    if (self.navigationBarColor) {
-        self.navigationBar.backgroundColor = self.navigationBarColor;
+    if (self.navigationBarViewColor) {
+        self.navigationBarView.backgroundColor = self.navigationBarViewColor;
     } else {
-        self.navigationBar.backgroundColor = UINavigationBar.appearance.barTintColor;
+        self.navigationBarView.backgroundColor = UINavigationBar.appearance.barTintColor;
     }
 }
 
@@ -83,7 +85,7 @@
 
 - (BOOL)isLandscape
 {
-    return UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation);
+    return UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation);
 }
 
 - (BOOL)isStatusBarHidden {

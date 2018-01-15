@@ -10,11 +10,13 @@
 
 @interface UIViewController (navigationBar)
 
-- (UIView *)navigationBar;
-- (void)setNavigationBar: (UIView *)naviBar;
-- (UIColor *)navigationBarColor;
-- (void)setNavigationBarColor:(UIColor *)navigationBarColor;
-- (void)addFakeNavigationBar;
-- (void)updateNavigationBarColor;
+- (UIView *)navigationBarView;
+- (void)setNavigationBarView: (UIView *)naviBarView;
+- (UIColor *)navigationBarViewColor;
+- (void)setNavigationBarViewColor:(UIColor *)navigationBarViewColor;
+- (void)addFakeNavigationBarView;
+- (void)updateNavigationBarViewColor;
+- (void)updateNavigationBarViewFrame;
 
 @end
+

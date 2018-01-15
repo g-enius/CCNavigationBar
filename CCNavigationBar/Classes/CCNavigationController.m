@@ -22,7 +22,7 @@
     [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     self.navigationBar.shadowImage = [UIImage new];//otherwise will be a gray underline
     self.navigationBar.titleTextAttributes = UINavigationBar.appearance.titleTextAttributes;
-
+    
     self.delegate = (id<UINavigationControllerDelegate>) self;
 }
 
@@ -32,30 +32,36 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (void)setViewControllers:(NSArray<__kindof UIViewController *> *)viewControllers
 {
     [super setViewControllers:viewControllers];
     UIViewController *topViewController = viewControllers.lastObject;
     
-    if (!topViewController.navigationBar) {
-        [topViewController addFakeNavigationBar];
+    if (!topViewController.navigationBarView) {
+        [topViewController addFakeNavigationBarView];
     }
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if(!viewController.navigationBar) {
-        [viewController addFakeNavigationBar];
+    if(!viewController.navigationBarView) {
+        [viewController addFakeNavigationBarView];
     }
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return self.topViewController.supportedInterfaceOrientations;
+}
+
 @end
+
